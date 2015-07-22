@@ -14,6 +14,7 @@
 		5544496B1B60163F00898D6E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5544496A1B60163F00898D6E /* Images.xcassets */; };
 		5544496E1B60163F00898D6E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5544496C1B60163F00898D6E /* LaunchScreen.xib */; };
 		5544497A1B60163F00898D6E /* iBeaconTryoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554449791B60163F00898D6E /* iBeaconTryoutTests.swift */; };
+		554449841B601E9900898D6E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554449831B601E9900898D6E /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		554449731B60163F00898D6E /* iBeaconTryoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iBeaconTryoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		554449781B60163F00898D6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		554449791B60163F00898D6E /* iBeaconTryoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBeaconTryoutTests.swift; sourceTree = "<group>"; };
+		554449831B601E9900898D6E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				554449841B601E9900898D6E /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +64,7 @@
 		554449531B60163F00898D6E = {
 			isa = PBXGroup;
 			children = (
+				554449831B601E9900898D6E /* CoreLocation.framework */,
 				5544495E1B60163F00898D6E /* iBeaconTryout */,
 				554449761B60163F00898D6E /* iBeaconTryoutTests */,
 				5544495D1B60163F00898D6E /* Products */,
@@ -159,6 +163,7 @@
 		554449541B60163F00898D6E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Marc Tarnutzer";
 				TargetAttributes = {
@@ -413,6 +418,7 @@
 				5544497F1B60163F00898D6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		554449801B60163F00898D6E /* Build configuration list for PBXNativeTarget "iBeaconTryoutTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +427,7 @@
 				554449821B60163F00898D6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

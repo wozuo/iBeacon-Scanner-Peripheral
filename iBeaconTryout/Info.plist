@@ -43,8 +43,10 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Detect other devices via iBeacon</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Detect other devices via iBeacon</string>
 </dict>
 </plist>
