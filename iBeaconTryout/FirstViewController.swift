@@ -28,19 +28,15 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, UITextVi
         }
         
         region = CLBeaconRegion(proximityUUID: uuid, identifier: "Places")
-        locationManager.startMonitoringForRegion(region)
-        //locationManager.startRangingBeaconsInRegion(region)
+        //locationManager.startMonitoringForRegion(region)
+        locationManager.startRangingBeaconsInRegion(region)
         consoleView.insertText(" <Console>: Start")
     }
     
     func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
-        println(beacons)
+        //println(beacons)
         consoleView.insertText("\n <Console>: ")
         for beacon in beacons {
-            //let client = beacon[0] as! NSString
-            println("im in ")
-            //consoleView.insertText(client as String)
-            
             let currentBeacon = beacon as! CLBeacon
             let minor = currentBeacon.minor.stringValue
             let major = currentBeacon.major.stringValue
