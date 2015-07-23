@@ -42,7 +42,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, UITextVi
     }
     
     func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
-        //println(beacons)
         for beacon in beacons {
             consoleView.insertText("\n\(getCurrentDate()) <C>: ")
             let currentBeacon = beacon as! CLBeacon
