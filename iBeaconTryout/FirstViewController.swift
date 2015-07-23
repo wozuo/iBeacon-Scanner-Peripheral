@@ -15,6 +15,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, UITextVi
     var region = CLBeaconRegion()
     var locationManager = CLLocationManager()
     let uuid = NSUUID(UUIDString: "CF943B10-3D35-41F1-A9BA-2B92F9B49569")
+    var metBeacons: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,11 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, UITextVi
         consoleView.insertText("\(getCurrentDate()) <C>: Start")
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
         //println(beacons)
         for beacon in beacons {
@@ -42,15 +48,45 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, UITextVi
             let currentBeacon = beacon as! CLBeacon
             let minor = currentBeacon.minor.stringValue
             let major = currentBeacon.major.stringValue
-            let consoleText = "-> Minor: \(minor) Major: \(major)"
+            var beaconID = "\(minor)_\(major)"
+            
+            if contains(metBeacons, beaconID) {
+                //Already met
+            } else {
+                let consoleText = "Met a new iBeacon with ID \(beaconID)"
+                sendLocalNotificationWithMessage(consoleText)
+                println(consoleText)
+                consoleView.insertText(consoleText)
+                metBeacons.append(beaconID)
+            }
+            
+            let accuracy = currentBeacon.accuracy
+            
+            var proximity: String!
+            switch currentBeacon.proximity {
+            case CLProximity.Immediate:
+                proximity = "Very close"
+                
+            case CLProximity.Near:
+                proximity = "Near"
+                
+            case CLProximity.Far:
+                proximity = "Far"
+                
+            default:
+                proximity = "No proximity data"
+            }
+            
+            let rssi = currentBeacon.rssi
+            let consoleText = "-> Minor: \(minor) Major: \(major) Met: \(metBeacons.count) Accuracy: \(accuracy) Proximity: \(proximity) RSSI: \(rssi)"
             println("\(getCurrentDate()) \(consoleText)")
             consoleView.insertText(consoleText)
         }
     }
     
     func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
-        let consoleText = "\n\(getCurrentDate()) <C>: Beacon is in range"
-        sendLocalNotificationWithMessage(consoleText)
+        sendLocalNotificationWithMessage("Beacon is in range")
+        let consoleText = "\n\(getCurrentDate()) <C>: iBeacon is in range"
         consoleView.insertText(consoleText)
         println(consoleText)
         locationManager.startRangingBeaconsInRegion(region as! CLBeaconRegion)
@@ -60,8 +96,8 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, UITextVi
     func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
         locationManager.stopRangingBeaconsInRegion(region as! CLBeaconRegion)
         locationManager.stopUpdatingLocation()
-        let consoleText = "\n\(getCurrentDate()) <C>: Beacon is out of range"
-        sendLocalNotificationWithMessage(consoleText)
+        sendLocalNotificationWithMessage("Beacon is out of range")
+        let consoleText = "\n\(getCurrentDate()) <C>: iBeacon is out of range"
         consoleView.insertText(consoleText)
         println(consoleText)
     }
@@ -79,12 +115,5 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, UITextVi
         notification.alertBody = message
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
