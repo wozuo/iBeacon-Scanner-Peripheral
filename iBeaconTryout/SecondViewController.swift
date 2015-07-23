@@ -30,14 +30,14 @@ class SecondViewController: UIViewController, CBPeripheralManagerDelegate, UITex
         region = CLBeaconRegion(proximityUUID: uuid, major: major, minor: minor, identifier: identifier)
         advertisedData = region.peripheralDataWithMeasuredPower(nil)
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
-        consoleView.insertText(" <Console>: Start")
+        consoleView.insertText("<Console>: Start")
     }
     
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager!) {
         switch peripheral.state {
         case CBPeripheralManagerState.PoweredOn:
             self.peripheralManager.startAdvertising(advertisedData as [NSObject : AnyObject])
-            consoleView.insertText("\n <Console>: Advertising... ")
+            consoleView.insertText("\n<Console>: Advertising... ")
         default:
             println("default")
         }
